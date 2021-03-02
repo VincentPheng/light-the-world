@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <link rel="stylesheet" href="./css/main.css">
+    </head>
+    <body onload="initializeObjects()">
+        <script src="./src/main.js"></script>
+        <h1>IGJ Prep</h1>
+        <p id="day"></p>
+        <p id="money"></p>
+        <table>
+            <tr>
+                <th colspan="8">Lighter Market</th>
+            </tr>
+            <tr>
+                <th> </th>
+                <th>Plain Lighters</th>
+                <th>Colored Lighters</th>
+                <th>Zippy Lighters</th>
+                <th>Candle Lighters</th>
+                <th>Butane Lighters</th>
+                <th>Plasma Lighters</th>
+                <th>Spells</th>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td id="plain-price"></td>
+                <td id="colored-price"></td>
+                <td id="zippo-price"></td>
+                <td id="candle-price"></td>
+                <td id="butane-price"></td>
+                <td id="plasma-price"></td>
+                <td id="spell-price"></td>
+            </tr>
+        </table>
+        <div id="main">
+            <div id="info">
+                <div id="plain-info">
+                    <p id="plain-lps"></p>
+                    <p id="plain-lighters"></p>
+                    <p id="plain-demand"></p>
+                    <button onclick="makeMoney('plain', 0.5)">Sell Plain Lighters</button>
+                    <br/><br/>
+                </div>
+                <div>
+                    <button id="colored-unlock" onclick="unlockLighter('colored', 50)">Unlock Colored Lighters ($50.0)</button>
+                    <div id="colored-info" style="display:none">
+                        <p id="colored-lps"></p>
+                        <p id="colored-lighters"></p>
+                        <p id="colored-demand"></p>
+                        <button onclick="makeMoney('colored', 2.5)">Sell Colored Lighters</button>
+                        <br/><br/>
+                    </div>
+                </div>
+                <br/>
+                <div>
+                    <button id="zippo-unlock" onclick="unlockLighter('zippo', 50)">Unlock Zippy Lighters ($50.0)</button>
+                    <div id="zippo-info" style="display:none">
+                        <p id="zippo-lps"></p>
+                        <p id="zippo-lighters"></p>
+                        <p id="zippo-demand"></p>
+                        <button onclick="makeMoney('zippo', 2.5)">Sell Zippy Lighters</button>
+                        <br/><br/>
+                    </div>
+                </div>
+                <br/>
+                <div>
+                    <button id="candle-unlock" onclick="unlockLighter('candle', 50)">Unlock Candle Lighters ($500.0)</button>
+                    <div id="candle-info" style="display:none">
+                        <p id="candle-lps"></p>
+                        <p id="candle-lighters"></p>
+                        <p id="candle-demand"></p>
+                        <button onclick="makeMoney('candle', 2.5)">Sell Candle Lighters</button>
+                        <br/><br/>
+                    </div>
+                </div>
+                <br/>
+                <div>
+                    <button id="butane-unlock" onclick="unlockLighter('butane', 50)">Unlock Butane Lighters ($5,000.0)</button>
+                    <div id="butane-info" style="display:none">
+                        <p id="butane-lps"></p>
+                        <p id="butane-lighters"></p>
+                        <p id="butane-demand"></p>
+                        <button onclick="makeMoney('butane', 2.5)">Sell Butane Lighters</button>
+                        <br/><br/>
+                    </div>
+                </div>
+                <br/>
+                <div>
+                    <button id="plasma-unlock" onclick="unlockLighter('plasma', 50)">Unlock Plasma Lighters ($100,000.0)</button>
+                    <div id="plasma-info" style="display:none">
+                        <p id="plasma-lps"></p>
+                        <p id="plasma-lighters"></p>
+                        <p id="plasma-demand"></p>
+                        <button onclick="makeMoney('plasma', 2.5)">Sell Plasma Lighters</button>
+                        <br/><br/>
+                    </div>
+                </div>
+                <br/>
+                <div>
+                    <button id="spell-unlock" onclick="unlockLighter('spell', 50)">Unlock Spell: Eternal Light ($100,000,000.0 + 5 golden lighters)</button>
+                    <div id="spell-info" style="display:none">
+                        <p id="spell-lps"></p>
+                        <p id="spell-lighters"></p>
+                        <p id="spell-demand"></p>
+                        <button onclick="makeMoney('spell', 2.5)">Sell Spell: Eternal Light</button>
+                        <br/><br/>
+                    </div>
+                </div>
+            </div>
+            <div id="upgrade">
+                <h1>Upgrades</h1>
+                <div>
+                    <h2>General Upgrades</h2>
+                    <button onclick="updateAllLPS(5, 0.05)">Slightly improved tools - 0.05 LPS to all ($5)</button><br/>
+                    <button onclick="updateAllLPS(5, 0.2)">Improved tools - 0.2 LPS to all ($5)</button><br/>
+                    <button onclick="updateAllLPS(5, 0.5)">Greatly improved tools - 0.5 LPS to all ($5)</button><br/>
+                    <button onclick="updateAllLPS(5, 1.2)">Titanium tools - 1.2 LPS to all ($5)</button>
+                </div>
+                <div>
+                    <h2>Plain Lighter Upgrades</h2>
+                    <button onclick="updateDemand('plain', 5, 0.1)">Studier Plastic - +0.1 Demand ($5)</button>
+                </div>
+                <div>
+                    <h2>Colored Lighter Upgrades</h2>
+                    <button onclick="updateDemand('colored', 5, 0.05)">Brighter Pigments - +0.1 Demand ($5)</button>
+                </div>
+                <div>
+                    <h2>Zippy Lighter Upgrades</h2>
+                    <button onclick="updateDemand('zippo', 5, 0.05)">Slightly improved tools - +0.1 Demand ($5)</button>
+                </div>
+                <div>
+                    <h2>Candle Lighter Upgrades</h2>
+                    <button onclick="updateDemand('candle', 5, 0.05)">Slightly improved tools - +0.1 Demand ($5)</button>
+                </div>
+                <div>
+                    <h2>Butane Lighter Upgrades</h2>
+                    <button onclick="updateDemand('butane', 5, 0.05)">Slightly improved tools - +0.1 Demand ($5)</button>
+                </div>
+                <div>
+                    <h2>Plasma Lighter Upgrades</h2>
+                    <button onclick="updateDemand('plasma', 5, 0.05)">Slightly improved tools - +0.1 Demand ($5)</button>
+                </div>
+                <div>
+                    <h2>Spell Upgrades</h2>
+                    <button onclick="updateDemand('spell', 5, 0.05)">Slightly improved tools - +0.1 Demand ($5)</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
